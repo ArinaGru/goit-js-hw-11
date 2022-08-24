@@ -1,7 +1,7 @@
-import './css/styles.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import SimpleLightbox from 'simplelightbox';
+import './css/styles.css';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import { fetchPics } from './js/fetchPics.js';
 import { markupPics } from './js/markupPics.js';
