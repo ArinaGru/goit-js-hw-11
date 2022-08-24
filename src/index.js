@@ -17,7 +17,7 @@ const optios = {
 };
 
 let page = 1;
-let query = null;
+let query;
 
 const galleryLB = new SimpleLightbox('.gallery a', {
   captionDelay: 250,
@@ -25,7 +25,6 @@ const galleryLB = new SimpleLightbox('.gallery a', {
 // --------------------Functions-------------------------
 
 function onResponse({ data }) {
-  console.log(data);
   if (data.hits.length === 0) {
     Notify.failure(
       'Sorry, there are no images matching your search query. Please try again.',
