@@ -12,40 +12,30 @@ body {
   line-height: 1.5;
 }
 
-ul {
+/* ul {
   list-style: none;
 }
 
 span {
   font-weight: bold;
+} */
+.search-form {
+  width: 50%;
+  margin-right: auto;
+  margin-left: auto;
 }
-
-.country {
+.gallery{
   display: flex;
+   flex-wrap: wrap;
 }
 
-#search-box {
-  font: inherit;
-  padding: 8px;
-  height: 50px;
-  width: 250px;
-  max-width: 320px;
-  margin-bottom: 16px;
+.photo-card{
+  margin-top: 30px;
+  margin-left: 15px;
 }
 
-.list-svg {
-  width: 100px;
-}
-
-.country-flag {
-  width: 50px;
-  margin-right: 20px;
-}
-
-.country-title {
-  display: flex;
-  align-items: center;
-}
-h2 {
-  margin-left: 20px;
+.about-item{
+  padding: 5px;
+  border: 1px solid rgb(39, 39, 39);
+  border-radius: 5px;
 }
