@@ -5,7 +5,6 @@ import './css/styles.css';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import { fetchPics } from './js/fetchPics.js';
 import { markupPics } from './js/markupPics.js';
-
 const refs = {
   form: document.querySelector('#search-form'),
   gallery: document.querySelector('.gallery'),
@@ -50,8 +49,12 @@ async function onSubmit(e) {
   query = inputValue.replace(/\s+/g, '+');
   page = 1;
   refs.gallery.innerHTML = '';
-  const pics = await fetchPics(query, page);
-  onResponse(pics);
+  try {
+    const pics = await fetchPics(query, page);
+    onResponse(pics);
+  } catch (error) {
+    console.log(error.message);
+  }
   refs.form.reset();
 }
 
@@ -62,7 +65,11 @@ window.addEventListener('scroll', async () => {
     window.scrollY + window.innerHeight >=
     document.documentElement.scrollHeight
   ) {
-    const pics = await fetchPics(query, page);
-    onResponse(pics);
+    try {
+      const pics = await fetchPics(query, page);
+      onResponse(pics);
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 });
