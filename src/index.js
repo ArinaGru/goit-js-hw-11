@@ -33,32 +33,19 @@ function onResponse({ data }) {
   totalPages = Math.ceil(data.totalHits / hitsPerPage);
   console.log(totalPages);
   if (data.hits.length === 0) {
-    Notify.failure(
-      `Sorry, there are no images matching your search: ${query}. Please try again.`,
-      optios
-    );
-    loadMoreBtn.hide();
+    notifyFailure();
     return;
   } else if (page === 1 && totalPages === 1) {
-    Notify.info(`Hooray! We found ${data.totalHits} images.`, optios);
-    appendMarkupPics(data.hits);
-    galleryLB.refresh();
+    notifyWeFound(data.totalHits, data.hits);
     loadMoreBtn.hide();
     return;
   } else if (page === 1) {
-    Notify.info(`Hooray! We found ${data.totalHits} images.`, optios);
-    loadMoreBtn.show();
-    
     page += 1;
-    appendMarkupPics(data.hits);
-    galleryLB.refresh();
+    notifyWeFound(data.totalHits, data.hits);
+    loadMoreBtn.show();
     return;
   } else if (page === totalPages) {
-    Notify.info(
-      `We're sorry, but you've reached the end of search results.`,
-      optios
-    );
-    loadMoreBtn.hide();
+    notifyEndsearch(data.hits);
     return;
   } else {
     page += 1;
@@ -66,6 +53,27 @@ function onResponse({ data }) {
     onPageScrolling();
     galleryLB.refresh();
   }
+}
+
+function notifyFailure() {
+  Notify.failure(
+    `Sorry, there are no images matching your search: ${query}. Please try again.`,
+    optios
+  );
+  loadMoreBtn.hide();
+}
+
+function notifyWeFound(totalHits, hits) {
+  Notify.info(`Hooray! We found ${totalHits} images.`, optios);
+  appendMarkupPics(hits);
+  galleryLB.refresh();
+}
+
+function notifyEndsearch(hits) {
+  Notify.info(`You've reached the end of search results.`, optios);
+  appendMarkupPics(hits);
+  galleryLB.refresh();
+  loadMoreBtn.hide();
 }
 
 function appendMarkupPics(data) {
