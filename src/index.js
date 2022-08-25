@@ -72,6 +72,7 @@ function notifyWeFound(totalHits, hits) {
 function notifyEndsearch(hits) {
   Notify.info(`You've reached the end of search results.`, optios);
   appendMarkupPics(hits);
+  onPageScrolling();
   galleryLB.refresh();
   loadMoreBtn.hide();
 }
@@ -103,7 +104,7 @@ function onPageScrolling() {
   const { height: cardHeight } =
     refs.gallery.firstElementChild.getBoundingClientRect();
   window.scrollBy({
-    top: cardHeight * 2,
+    top: cardHeight * 1.75,
     behavior: 'smooth',
   });
 }
